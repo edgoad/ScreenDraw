@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:ScreenDraw"
         mc:Ignorable="d"
         Closing="App_Closing"
-        Title="MainWindow" Height="357.388" Width="237.203" Topmost="True">
+        Title="MainWindow" Height="357.388" Width="237.203" Topmost="True"
+        >
     <Grid>
         <StackPanel Name="buttonBar" VerticalAlignment="Top" Height="50" Orientation="Horizontal" Margin="5">
             <!--<Button Click="openCanvas">Begin Drawing</Button>-->
