@@ -1,0 +1,63 @@
+﻿<Window x:Class="ScreenDraw.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ScreenDraw"
+        mc:Ignorable="d"
+        Closing="App_Closing"
+        Title="MainWindow" Height="357.388" Width="237.203" Topmost="True">
+    <Grid>
+        <StackPanel Name="buttonBar" VerticalAlignment="Top" Height="50" Orientation="Horizontal" Margin="5">
+            <!--<Button Click="openCanvas">Begin Drawing</Button>-->
+            <Button Click="Ink" Height="50" VerticalAlignment="Top" Width="50">
+                <Button.Background>
+                    <ImageBrush ImageSource="Icons/pencil.png"/>
+                </Button.Background> Ink
+            </Button>
+            <Button Click="Highlight">
+                <Button.Background>
+                    <ImageBrush ImageSource="Icons/marker.png"/>
+                </Button.Background> Highlight
+            </Button>
+            <Button Click="EraseStroke" Height="50" VerticalAlignment="Bottom" Width="50">
+                <Button.Background>
+                    <ImageBrush ImageSource="Icons/eraser-variant.png"/>
+                </Button.Background> EraseStroke
+            </Button>
+            <Button Click="Select" Width="50">
+                <Button.Background>
+                    <ImageBrush ImageSource="Icons/select-drag.png"/>
+                </Button.Background> Select
+            </Button>
+        </StackPanel>
+        <!--<StackPanel Name="colorBar" VerticalAlignment="Bottom" Height="50" Orientation="Horizontal" Margin="5">
+            <Button Click="clrRed" Background="Red" Foreground="White" Width="50" Height="50">Red</Button>
+            <Button Click="clrBlue" Background="Blue" Foreground="White" Width="50" Height="50">Blue</Button>
+            <Button Click="clrGreen" Background="Green" Foreground="White" Width="50" Height="50">Green</Button>
+            <Button Click="clrBlack" Background="Black" Foreground="White" Width="50" Height="50">Black</Button>
+        </StackPanel>-->
+        <Button Click="btnUndo" Content="Undo" HorizontalAlignment="Left" Margin="135,85,0,0" VerticalAlignment="Top" Width="75" />
+        <ComboBox Name="cmbScreens" HorizontalAlignment="Left" Margin="10,288,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Close" Click="btnClose" HorizontalAlignment="Left" Margin="135,113,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Begin Drawing" Click="openCanvas" HorizontalAlignment="Left" Margin="135,60,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Click="clrRed" Background="Red" Foreground="White"  HorizontalAlignment="Left" Margin="4,60,0,0" VerticalAlignment="Top" Width="50" Height="50"/>
+        <Button Click="clrBlue" Background="Blue" Foreground="White" HorizontalAlignment="Left" Margin="4,113,0,0" VerticalAlignment="Top" Width="50" Height="50"/>
+        <Button Click="clrGreen" Background="Green" Foreground="White" HorizontalAlignment="Left" Margin="4,168,0,0" VerticalAlignment="Top" Width="50" Height="50"/>
+        <Button Click="clrBlack" Background="Black" Foreground="White" HorizontalAlignment="Left" Margin="4,223,0,0" VerticalAlignment="Top" Width="50" Height="50"/>
+        <Button Click="clrRedH" Background="Red" Foreground="White"  HorizontalAlignment="Left" Margin="59,60,0,0" VerticalAlignment="Top" Width="50" Height="50"/>
+        <Button Click="clrBlueH" Background="Blue" Foreground="White" HorizontalAlignment="Left" Margin="59,113,0,0" VerticalAlignment="Top" Width="50" Height="50"/>
+        <Button Click="clrGreenH" Background="Green" Foreground="White" HorizontalAlignment="Left" Margin="59,168,0,0" VerticalAlignment="Top" Width="50" Height="50"/>
+        <Button Click="clrYellowH" Background="Yellow" Foreground="Black" HorizontalAlignment="Left" Margin="59,223,0,0" VerticalAlignment="Top" Width="50" Height="50"/>
+        <!--<Button  HorizontalAlignment="Left" Margin="30,146,0,0" VerticalAlignment="Top" Width="75" Command="{StaticResource myCommand1}" Content="Undo2"/>-->
+    </Grid>
+    <Window.Resources>
+        <RoutedUICommand x:Key="myCommand1" Text="Undo"/>
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="{StaticResource myCommand1}" Executed="btnUndo"/>
+    </Window.CommandBindings>
+    <Window.InputBindings>
+        <KeyBinding  Key="Z" Modifiers="Ctrl" Command="{StaticResource myCommand1}"/>
+    </Window.InputBindings>
+</Window>
