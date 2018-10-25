@@ -44,11 +44,14 @@ namespace ScreenDraw
             // setup dimensions for target screen
             System.Windows.Forms.Screen targetScreen = screens[cmbScreens.SelectedIndex];
             window1.WindowState = WindowState.Normal;
-            //window1.Left = targetScreen.Bounds.Left;
-            window1.Left = targetScreen.WorkingArea.Left;
-            window1.Top = targetScreen.WorkingArea.Top;
-            window1.Width = targetScreen.WorkingArea.Width;
-            window1.Height = targetScreen.WorkingArea.Height;
+            window1.Left = targetScreen.Bounds.Left;
+            window1.Top = targetScreen.Bounds.Top;
+            window1.Width = targetScreen.Bounds.Width;
+            window1.Height = targetScreen.Bounds.Height;
+            //window1.Left = targetScreen.WorkingArea.Left;
+            //window1.Top = targetScreen.WorkingArea.Top;
+            //window1.Width = targetScreen.WorkingArea.Width;
+            //window1.Height = targetScreen.WorkingArea.Height;
 
             //capture screen and put as background
             System.IO.Stream myImg = takeScreenshot();
@@ -95,10 +98,14 @@ namespace ScreenDraw
             System.IO.MemoryStream myImg = new System.IO.MemoryStream();
 
             System.Windows.Forms.Screen targetScreen = screens[cmbScreens.SelectedIndex];
-            int screenLeft = targetScreen.WorkingArea.Left;
-            int screenTop = targetScreen.WorkingArea.Top;
-            int screenWidth = targetScreen.WorkingArea.Width;
-            int screenHeight = targetScreen.WorkingArea.Height;
+            int screenLeft = targetScreen.Bounds.Left;
+            int screenTop = targetScreen.Bounds.Top;
+            int screenWidth = targetScreen.Bounds.Width;
+            int screenHeight = targetScreen.Bounds.Height;
+            //int screenLeft = targetScreen.WorkingArea.Left;
+            //int screenTop = targetScreen.WorkingArea.Top;
+            //int screenWidth = targetScreen.WorkingArea.Width;
+            //int screenHeight = targetScreen.WorkingArea.Height;
 
             using (Bitmap bmp = new Bitmap(screenWidth, screenHeight))
             {
@@ -114,10 +121,14 @@ namespace ScreenDraw
         private void takeScreenshot_org()
         {
             System.Windows.Forms.Screen targetScreen = screens[cmbScreens.SelectedIndex];
-            int screenLeft = targetScreen.WorkingArea.Left;
-            int screenTop = targetScreen.WorkingArea.Top;
-            int screenWidth = targetScreen.WorkingArea.Width;
-            int screenHeight = targetScreen.WorkingArea.Height;
+            int screenLeft = targetScreen.Bounds.Left;
+            int screenTop = targetScreen.Bounds.Top;
+            int screenWidth = targetScreen.Bounds.Width;
+            int screenHeight = targetScreen.Bounds.Height;
+            //int screenLeft = targetScreen.WorkingArea.Left;
+            //int screenTop = targetScreen.WorkingArea.Top;
+            //int screenWidth = targetScreen.WorkingArea.Width;
+            //int screenHeight = targetScreen.WorkingArea.Height;
 
             using (Bitmap bmp = new Bitmap(screenWidth, screenHeight))
             {
@@ -138,6 +149,7 @@ namespace ScreenDraw
             window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Red;
             window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = false;
             window1.inkCanvas1.DefaultDrawingAttributes.Height = 2;
+            window1.inkCanvas1.DefaultDrawingAttributes.Width = 2;
         }
         // Set the EditingMode to highlighter input.
         private void Highlight(object sender, RoutedEventArgs e)
@@ -168,15 +180,16 @@ namespace ScreenDraw
                 window1.inkCanvas1.Strokes.RemoveAt(numStrokes - 1);
             }
         }
+
         private void clrRed(object sender, RoutedEventArgs e)
         {
             window1.inkCanvas1.EditingMode = InkCanvasEditingMode.Ink;
 
             // Set the DefaultDrawingAttributes for a red pen.
             window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Red;
-            window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = false;
-            window1.inkCanvas1.DefaultDrawingAttributes.Height = 1;
-            window1.inkCanvas1.DefaultDrawingAttributes.Width = 1;
+            //window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = false;
+            //window1.inkCanvas1.DefaultDrawingAttributes.Height = 2;
+            //window1.inkCanvas1.DefaultDrawingAttributes.Width = 2;
         }
         private void clrBlue(object sender, RoutedEventArgs e)
         {
@@ -184,9 +197,9 @@ namespace ScreenDraw
 
             // Set the DefaultDrawingAttributes for a red pen.
             window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Blue;
-            window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = false;
-            window1.inkCanvas1.DefaultDrawingAttributes.Height = 1;
-            window1.inkCanvas1.DefaultDrawingAttributes.Width = 1;
+            //window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = false;
+            //window1.inkCanvas1.DefaultDrawingAttributes.Height = 2;
+            //window1.inkCanvas1.DefaultDrawingAttributes.Width = 2;
         }
         private void clrGreen(object sender, RoutedEventArgs e)
         {
@@ -194,9 +207,9 @@ namespace ScreenDraw
 
             // Set the DefaultDrawingAttributes for a red pen.
             window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Green;
-            window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = false;
-            window1.inkCanvas1.DefaultDrawingAttributes.Height = 1;
-            window1.inkCanvas1.DefaultDrawingAttributes.Width = 1;
+            //window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = false;
+            //window1.inkCanvas1.DefaultDrawingAttributes.Height = 2;
+            //window1.inkCanvas1.DefaultDrawingAttributes.Width = 2;
         }
         private void clrBlack(object sender, RoutedEventArgs e)
         {
@@ -204,9 +217,9 @@ namespace ScreenDraw
 
             // Set the DefaultDrawingAttributes for a red pen.
             window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Black;
-            window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = false;
-            window1.inkCanvas1.DefaultDrawingAttributes.Height = 1;
-            window1.inkCanvas1.DefaultDrawingAttributes.Width = 1;
+            //window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = false;
+            //window1.inkCanvas1.DefaultDrawingAttributes.Height = 2;
+            //window1.inkCanvas1.DefaultDrawingAttributes.Width = 2;
         }
 
 

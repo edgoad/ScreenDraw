@@ -136,5 +136,15 @@
     <Resource Include="Icons\pencil.png" />
     <Resource Include="Icons\select-drag.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\camera.png" />
+    <Resource Include="Icons\undo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\eye.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\monitor-multiple.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
