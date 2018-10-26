@@ -22,6 +22,8 @@ namespace ScreenDraw
         public Window1()
         {
             InitializeComponent();
+
+            this.PreviewKeyDown += new KeyEventHandler(HandleEsc);
         }
         private void btnUndo(object sender, RoutedEventArgs e)
         {
@@ -30,6 +32,15 @@ namespace ScreenDraw
             {
                 this.inkCanvas1.Strokes.RemoveAt(numStrokes - 1);
             }
+        }
+        private void HandleEsc(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+                Close();
+        }
+        private void btnClose(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
         void App_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {

@@ -11,18 +11,22 @@
     <Grid>
         <InkCanvas Name="inkCanvas1" Background="Ivory" Grid.ColumnSpan="2" Cursor="Cross">
             <InkCanvas.DefaultDrawingAttributes>
-                <Ink:DrawingAttributes xmlns:ink="system-windows-ink" Color="Red" Width="5" />
+                <Ink:DrawingAttributes xmlns:ink="system-windows-ink" Color="Red" Width="2" Height="2"/>
             </InkCanvas.DefaultDrawingAttributes>
         </InkCanvas>
 
     </Grid>
     <Window.Resources>
         <RoutedUICommand x:Key="myCommand1" Text="Undo"/>
+        <RoutedUICommand x:Key="myCommand2" Text="Close"/>
+
     </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding Command="{StaticResource myCommand1}" Executed="btnUndo"/>
+        <CommandBinding Command="{StaticResource myCommand2}" Executed="btnClose"/>
     </Window.CommandBindings>
     <Window.InputBindings>
         <KeyBinding  Key="Z" Modifiers="Ctrl" Command="{StaticResource myCommand1}"/>
+        <KeyBinding Key="Esc" Command="{StaticResource myCommand2}"/>
     </Window.InputBindings>
 </Window>

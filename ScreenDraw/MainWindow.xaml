@@ -6,16 +6,9 @@
         xmlns:local="clr-namespace:ScreenDraw"
         mc:Ignorable="d"
         Closing="App_Closing"
-        Title="ScreenDraw" Height="419.168" Width="129.282" Topmost="True" WindowStyle="ToolWindow"
+        Title="SD" Height="419.168" Width="57.335" Topmost="True" WindowStyle="ToolWindow"
         >
     <Grid >
-        <!--<StackPanel Name="colorBar" VerticalAlignment="Bottom" Height="50" Orientation="Horizontal" Margin="5">
-            <Button Click="clrRed" Background="Red" Foreground="White" Width="50" Height="50">Red</Button>
-            <Button Click="clrBlue" Background="Blue" Foreground="White" Width="50" Height="50">Blue</Button>
-            <Button Click="clrGreen" Background="Green" Foreground="White" Width="50" Height="50">Green</Button>
-            <Button Click="clrBlack" Background="Black" Foreground="White" Width="50" Height="50">Black</Button>
-        </StackPanel>-->
-        <!--<Button Click="openCanvas">Begin Drawing</Button>-->
         <Button Click="Highlight" Width="40" Height="40" Margin="0,121,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Button.Background>
                 <ImageBrush ImageSource="Icons/marker.png"/>
@@ -56,29 +49,25 @@
         <Button Click="clrBlue" Background="Blue" Foreground="White" HorizontalAlignment="Left" Margin="20,279,0,0" VerticalAlignment="Top" Width="20" Height="20"/>
         <Button Click="clrGreen" Background="Green" Foreground="White" HorizontalAlignment="Left" Margin="0,299,0,0" VerticalAlignment="Top" Width="20" Height="20"/>
         <Button Click="clrBlack" Background="Black" Foreground="White" HorizontalAlignment="Left" Margin="20,299,0,0" VerticalAlignment="Top" Width="20" Height="20"/>
-        <!--<Button Click="clrRedH" Background="Red" Foreground="White"  HorizontalAlignment="Left" Margin="59,60,0,0" VerticalAlignment="Top" Width="50" Height="50"/>
-        <Button Click="clrBlueH" Background="Blue" Foreground="White" HorizontalAlignment="Left" Margin="59,113,0,0" VerticalAlignment="Top" Width="50" Height="50"/>
-        <Button Click="clrGreenH" Background="Green" Foreground="White" HorizontalAlignment="Left" Margin="59,168,0,0" VerticalAlignment="Top" Width="50" Height="50"/>
-        <Button Click="clrYellowH" Background="Yellow" Foreground="Black" HorizontalAlignment="Left" Margin="59,223,0,0" VerticalAlignment="Top" Width="50" Height="50"/>-->
-        <!--<Button  HorizontalAlignment="Left" Margin="30,146,0,0" VerticalAlignment="Top" Width="75" Command="{StaticResource myCommand1}" Content="Undo2"/>-->
-        <ComboBox Name="cmbScreens" HorizontalAlignment="Left" Margin="0,367,0,0" VerticalAlignment="Top" Width="120"/>
-        <Menu HorizontalAlignment="Left" Height="40" Margin="1,320,0,0" VerticalAlignment="Top" Width="40">
+       
+        <Menu Name="mnuOptions" HorizontalAlignment="Left" Height="40" Margin="1,320,0,0" VerticalAlignment="Top" Width="40">
             <Menu.Background>
                 <ImageBrush ImageSource="Icons/monitor-multiple.png"/>
             </Menu.Background>
-            <MenuItem Header="Monitor" Width="40" Height="40" RenderTransformOrigin="0.508,0.518">
-                <MenuItem Header="Mon1"/>
-                <MenuItem Header="Mon2"/>
+            <MenuItem Name="mnuMonitors" Header="Monitor" Width="40" Height="40" RenderTransformOrigin="0.508,0.518" Click="MonitorSelected">
             </MenuItem>
         </Menu>
     </Grid>
     <Window.Resources>
         <RoutedUICommand x:Key="myCommand1" Text="Undo"/>
+        <RoutedUICommand x:Key="myCommand2" Text="Close"/>
     </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding Command="{StaticResource myCommand1}" Executed="btnUndo"/>
+        <CommandBinding Command="{StaticResource myCommand2}" Executed="btnClose"/>
     </Window.CommandBindings>
     <Window.InputBindings>
         <KeyBinding  Key="Z" Modifiers="Ctrl" Command="{StaticResource myCommand1}"/>
+        <KeyBinding Key="Esc" Command="{StaticResource myCommand2}"/>
     </Window.InputBindings>
 </Window>
