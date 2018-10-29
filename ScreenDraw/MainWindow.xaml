@@ -6,28 +6,31 @@
         xmlns:local="clr-namespace:ScreenDraw"
         mc:Ignorable="d"
         Closing="App_Closing"
-        Title="SD" Height="320.501" Width="46" Topmost="True" WindowStyle="None"
+        Title="SD" Height="320.501" Width="31.333" Topmost="True" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}"
         >
-    <Grid >
-        <Button Click="Highlight" Width="30" Height="30" Margin="0,120,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+    <Grid Width="30" >
+        <Grid.Background>
+            <ImageBrush/>
+        </Grid.Background>
+        <Button Click="Highlight" Width="30" Height="30" Margin="0,120,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Highlight">
             <Button.Background>
                 <ImageBrush ImageSource="Icons/marker.png"/>
-            </Button.Background> Highlight
+            </Button.Background>
         </Button>
-        <Button Click="EraseStroke" Height="30" VerticalAlignment="Top" Width="30" Margin="0,210,0,0" HorizontalAlignment="Left">
+        <Button Click="EraseStroke" Height="30" VerticalAlignment="Top" Width="30" Margin="0,210,0,0" HorizontalAlignment="Left" Content="EraseStroke">
             <Button.Background>
                 <ImageBrush ImageSource="Icons/eraser-variant.png"/>
-            </Button.Background> EraseStroke
+            </Button.Background>
         </Button>
-        <Button Click="Select" Width="30" Height="30" Margin="0,180,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Button Click="Select" Width="30" Height="30" Margin="0,180,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Select">
             <Button.Background>
                 <ImageBrush ImageSource="Icons/select-drag.png"/>
-            </Button.Background> Select
+            </Button.Background>
         </Button>
-        <Button Click="Ink" Height="30" VerticalAlignment="Top" Width="30" Margin="0,90,0,0" HorizontalAlignment="Left">
+        <Button Click="Ink" Height="30" VerticalAlignment="Top" Width="30" Margin="0,90,0,0" HorizontalAlignment="Left" Content="Ink">
             <Button.Background>
                 <ImageBrush ImageSource="Icons/pencil.png"/>
-            </Button.Background> Ink
+            </Button.Background>
         </Button>
 
         <Button Click="btnUndo" Content="Undo" HorizontalAlignment="Left" Margin="0,150,0,0" VerticalAlignment="Top" Width="30" Height="30" >
@@ -50,12 +53,13 @@
         <Button Click="clrGreen" Background="Green" Foreground="White" HorizontalAlignment="Left" Margin="0,255,0,0" VerticalAlignment="Top" Width="15" Height="15"/>
         <Button Click="clrBlack" Background="Black" Foreground="White" HorizontalAlignment="Left" Margin="15,255,0,0" VerticalAlignment="Top" Width="15" Height="15"/>
 
-        <Menu Name="mnuOptions" HorizontalAlignment="Left" Height="30" Margin="0,273,0,0" VerticalAlignment="Top" Width="30">
+        <Menu x:Name="mnuOptions" HorizontalAlignment="Left" Height="30" Margin="0,273,0,0" VerticalAlignment="Top" Width="30">
             <Menu.Background>
                 <ImageBrush ImageSource="Icons/monitor-multiple.png"/>
             </Menu.Background>
             <MenuItem x:Name="mnuMonitors" Header="Monitor" Width="30" Height="30" RenderTransformOrigin="0.508,0.518" Click="MonitorSelected"/>
         </Menu>
+        <Image HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="30" Source="Icons/logo.png"/>
     </Grid>
     <Window.Resources>
         <RoutedUICommand x:Key="myCommand1" Text="Undo"/>
