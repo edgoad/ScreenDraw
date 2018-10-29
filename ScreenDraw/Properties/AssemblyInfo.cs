@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("ScreenDraw")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Green River Community College")]
+[assembly: AssemblyCompany("edgoad.com")]
 [assembly: AssemblyProduct("ScreenDraw")]
-[assembly: AssemblyCopyright("Copyright © Green River Community College 2018")]
+[assembly: AssemblyCopyright("Copyright © edgoad.com 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -40,7 +40,15 @@ namespace ScreenDraw
 
                  mnuMonitors.Items.Add(myMenuItem);
            }
+            MouseDown += Window_MouseDown;
+
             SelectScreen();
+        }
+        // Allow borderless movement
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                DragMove();
         }
 
         // select screens to use
@@ -80,7 +88,8 @@ namespace ScreenDraw
         private void SelectScreen()
         {
             string itemName = Properties.Settings.Default.monitorName;
-            itemName = itemName.Replace("\\\\.\\DISPLAY", "");
+            itemName = System.Text.RegularExpressions.Regex.Match(itemName, @"\d+").Value;
+//            itemName = itemName.Replace("\\\\.\\DISPLAY", "");    // replaced with regex above
             int itemNum = Convert.ToInt32(itemName) - 1;
             selectedScreen = screens[itemNum];
         }
@@ -252,6 +261,9 @@ namespace ScreenDraw
         {
             System.Windows.Application.Current.Shutdown();
         }
+
+        // Add stylus support
+
 
         //private void openCanvas_old(object sender, RoutedEventArgs e)
         //{
