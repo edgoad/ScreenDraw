@@ -205,55 +205,83 @@ namespace ScreenDraw
         }
 
         // choose colors
-        private void clrRed(object sender, RoutedEventArgs e)
-        {
-            window1.inkCanvas1.EditingMode = InkCanvasEditingMode.Ink;
+        //private void clrRed(object sender, RoutedEventArgs e)
+        //{
+        //    window1.inkCanvas1.EditingMode = InkCanvasEditingMode.Ink;
 
-            // Set the DefaultDrawingAttributes for a red pen.
-            window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Red;
-            //window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = false;
-            //window1.inkCanvas1.DefaultDrawingAttributes.Height = 2;
-            //window1.inkCanvas1.DefaultDrawingAttributes.Width = 2;
-        }
-        private void clrBlue(object sender, RoutedEventArgs e)
-        {
-            window1.inkCanvas1.EditingMode = InkCanvasEditingMode.Ink;
+        //    // Set the DefaultDrawingAttributes for a red pen.
+        //    window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Red;
+        //    //window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = false;
+        //    //window1.inkCanvas1.DefaultDrawingAttributes.Height = 2;
+        //    //window1.inkCanvas1.DefaultDrawingAttributes.Width = 2;
+        //}
+        //private void clrBlue(object sender, RoutedEventArgs e)
+        //{
+        //    window1.inkCanvas1.EditingMode = InkCanvasEditingMode.Ink;
 
-            // Set the DefaultDrawingAttributes for a red pen.
-            window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Blue;
-            //window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = false;
-            //window1.inkCanvas1.DefaultDrawingAttributes.Height = 2;
-            //window1.inkCanvas1.DefaultDrawingAttributes.Width = 2;
-        }
-        private void clrGreen(object sender, RoutedEventArgs e)
-        {
-            window1.inkCanvas1.EditingMode = InkCanvasEditingMode.Ink;
+        //    // Set the DefaultDrawingAttributes for a red pen.
+        //    window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Blue;
+        //    //window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = false;
+        //    //window1.inkCanvas1.DefaultDrawingAttributes.Height = 2;
+        //    //window1.inkCanvas1.DefaultDrawingAttributes.Width = 2;
+        //}
+        //private void clrGreen(object sender, RoutedEventArgs e)
+        //{
+        //    window1.inkCanvas1.EditingMode = InkCanvasEditingMode.Ink;
 
-            // Set the DefaultDrawingAttributes for a red pen.
-            window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Green;
-            //window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = false;
-            //window1.inkCanvas1.DefaultDrawingAttributes.Height = 2;
-            //window1.inkCanvas1.DefaultDrawingAttributes.Width = 2;
-        }
-        private void clrBlack(object sender, RoutedEventArgs e)
-        {
-            window1.inkCanvas1.EditingMode = InkCanvasEditingMode.Ink;
+        //    // Set the DefaultDrawingAttributes for a red pen.
+        //    window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Green;
+        //    //window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = false;
+        //    //window1.inkCanvas1.DefaultDrawingAttributes.Height = 2;
+        //    //window1.inkCanvas1.DefaultDrawingAttributes.Width = 2;
+        //}
+        //private void clrYellow(object sender, RoutedEventArgs e)
+        //{
+        //    window1.inkCanvas1.EditingMode = InkCanvasEditingMode.Ink;
 
-            // Set the DefaultDrawingAttributes for a red pen.
-            window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Black;
-            //window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = false;
-            //window1.inkCanvas1.DefaultDrawingAttributes.Height = 2;
-            //window1.inkCanvas1.DefaultDrawingAttributes.Width = 2;
-        }
-        private void clrYellow(object sender, RoutedEventArgs e)
-        {
-            window1.inkCanvas1.EditingMode = InkCanvasEditingMode.Ink;
+        //    // Set the DefaultDrawingAttributes for a red pen.
+        //    window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Yellow;
+        //    //window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = false;
+        //    //window1.inkCanvas1.DefaultDrawingAttributes.Height = 2;
+        //    //window1.inkCanvas1.DefaultDrawingAttributes.Width = 2;
+        //}
+        //private void clrBlack(object sender, RoutedEventArgs e)
+        //{
+        //    window1.inkCanvas1.EditingMode = InkCanvasEditingMode.Ink;
 
-            // Set the DefaultDrawingAttributes for a red pen.
-            window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Yellow;
-            //window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = false;
-            //window1.inkCanvas1.DefaultDrawingAttributes.Height = 2;
-            //window1.inkCanvas1.DefaultDrawingAttributes.Width = 2;
+        //    // Set the DefaultDrawingAttributes for a red pen.
+        //    window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Black;
+        //    //window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = false;
+        //    //window1.inkCanvas1.DefaultDrawingAttributes.Height = 2;
+        //    //window1.inkCanvas1.DefaultDrawingAttributes.Width = 2;
+        //}
+        //private void clrWhite(object sender, RoutedEventArgs e)
+        //{
+        //    window1.inkCanvas1.EditingMode = InkCanvasEditingMode.Ink;
+
+        //    // Set the DefaultDrawingAttributes for a red pen.
+        //    window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.White;
+        //    //window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = false;
+        //    //window1.inkCanvas1.DefaultDrawingAttributes.Height = 2;
+        //    //window1.inkCanvas1.DefaultDrawingAttributes.Width = 2;
+        //}
+
+        private void ColorChoose(object sender, RoutedEventArgs e)
+        {
+            Button clickedButton = sender as Button;
+            if (clickedButton.Name == "clrRed")
+                window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Red;
+            if (clickedButton.Name == "clrBlue")
+                window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Blue;
+            if (clickedButton.Name == "clrGreen")
+                window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Green;
+            if (clickedButton.Name == "clrYellow")
+                window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Yellow;
+            if (clickedButton.Name == "clrWhite")
+                window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.White;
+            if (clickedButton.Name == "clrBlack")
+                window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Black;
+
         }
 
         // close out all windows when exiting
@@ -262,99 +290,6 @@ namespace ScreenDraw
             System.Windows.Application.Current.Shutdown();
         }
 
-        // Add stylus support
-
-
-        //private void openCanvas_old(object sender, RoutedEventArgs e)
-        //{
-        //    // setup dimensions for target screen
-        //    System.Windows.Forms.Screen targetScreen = screens[cmbScreens.SelectedIndex];
-        //    window1.WindowState = WindowState.Normal;
-        //    //window1.Left = targetScreen.Bounds.Left;
-        //    window1.Left = targetScreen.WorkingArea.Left;
-        //    window1.Top = targetScreen.WorkingArea.Top;
-        //    window1.Width = targetScreen.WorkingArea.Width;
-        //    window1.Height = targetScreen.WorkingArea.Height;
-
-        //    //capture screen and put as background
-        //    takeScreenshot();
-        //    //window1.inkCanvas1.Background = new BitmapImage(new Uri(@"c:\temp\foo.png",));
-        //    window1.inkCanvas1.Background = new ImageBrush(new BitmapImage(new Uri(@"c:\temp\snap.png")));
-
-        //    //open ink on target scree and maximize
-        //    window1.SourceInitialized += (snd, arg) => window1.WindowState = WindowState.Maximized;
-        //    window1.Show();
-        //    //window1.Loaded += MaximizeWindow;
-        //}
-        //private void takeScreenshot_org()
-        //{
-        //    System.Windows.Forms.Screen targetScreen = screens[cmbScreens.SelectedIndex];
-
-        //    int screenLeft = targetScreen.Bounds.Left;
-        //    int screenTop = targetScreen.Bounds.Top;
-        //    int screenWidth = targetScreen.Bounds.Width;
-        //    int screenHeight = targetScreen.Bounds.Height;
-        //    //int screenLeft = targetScreen.WorkingArea.Left;
-        //    //int screenTop = targetScreen.WorkingArea.Top;
-        //    //int screenWidth = targetScreen.WorkingArea.Width;
-        //    //int screenHeight = targetScreen.WorkingArea.Height;
-
-        //    using (Bitmap bmp = new Bitmap(screenWidth, screenHeight))
-        //    {
-        //        using (Graphics g = Graphics.FromImage(bmp))
-        //        {
-        //            g.CopyFromScreen(screenLeft, screenTop, 0, 0, bmp.Size);
-        //        }
-        //        bmp.Save(@"c:\temp\snap.png", ImageFormat.Png);
-        //    }
-        //}
-
-        // Set the EditingMode to ink input.
-        //private void clrRedH(object sender, RoutedEventArgs e)
-        //{
-        //    window1.inkCanvas1.EditingMode = InkCanvasEditingMode.Ink;
-
-        //    // Set the DefaultDrawingAttributes for a highlighter pen.
-        //    window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Red;
-        //    window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = true;
-        //    window1.inkCanvas1.DefaultDrawingAttributes.Height = 25;
-        //}
-        //private void clrBlueH(object sender, RoutedEventArgs e)
-        //{
-        //    window1.inkCanvas1.EditingMode = InkCanvasEditingMode.Ink;
-
-        //    // Set the DefaultDrawingAttributes for a highlighter pen.
-        //    window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Blue;
-        //    window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = true;
-        //    window1.inkCanvas1.DefaultDrawingAttributes.Height = 25;
-        //}
-        //private void clrGreenH(object sender, RoutedEventArgs e)
-        //{
-        //    window1.inkCanvas1.EditingMode = InkCanvasEditingMode.Ink;
-
-        //    // Set the DefaultDrawingAttributes for a highlighter pen.
-        //    window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Green;
-        //    window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = true;
-        //    window1.inkCanvas1.DefaultDrawingAttributes.Height = 25;
-        //}
-        //private void clrYellowH(object sender, RoutedEventArgs e)
-        //{
-        //    window1.inkCanvas1.EditingMode = InkCanvasEditingMode.Ink;
-
-        //    // Set the DefaultDrawingAttributes for a highlighter pen.
-        //    window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Yellow;
-        //    window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = true;
-        //    window1.inkCanvas1.DefaultDrawingAttributes.Height = 25;
-        //}
-        //private void myCommand()
-        //{
-        //    int numStrokes = window1.inkCanvas1.Strokes.Count();
-        //    if (numStrokes >= 1)
-        //    {
-        //        window1.inkCanvas1.Strokes.RemoveAt(numStrokes - 1);
-        //    }
-
-        //}
 
     }
 }

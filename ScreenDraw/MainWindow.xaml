@@ -6,60 +6,64 @@
         xmlns:local="clr-namespace:ScreenDraw"
         mc:Ignorable="d"
         Closing="App_Closing"
-        Title="SD" Height="320.501" Width="31.333" Topmost="True" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}"
+        Title="SD" Height="317" Width="32" Topmost="True" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}"
         >
-    <Grid Width="30" >
-        <Grid.Background>
-            <ImageBrush/>
-        </Grid.Background>
-        <Button Click="Highlight" Width="30" Height="30" Margin="0,120,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Highlight">
-            <Button.Background>
-                <ImageBrush ImageSource="Icons/marker.png"/>
-            </Button.Background>
-        </Button>
-        <Button Click="EraseStroke" Height="30" VerticalAlignment="Top" Width="30" Margin="0,210,0,0" HorizontalAlignment="Left" Content="EraseStroke">
-            <Button.Background>
-                <ImageBrush ImageSource="Icons/eraser-variant.png"/>
-            </Button.Background>
-        </Button>
-        <Button Click="Select" Width="30" Height="30" Margin="0,180,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Select">
-            <Button.Background>
-                <ImageBrush ImageSource="Icons/select-drag.png"/>
-            </Button.Background>
-        </Button>
-        <Button Click="Ink" Height="30" VerticalAlignment="Top" Width="30" Margin="0,90,0,0" HorizontalAlignment="Left" Content="Ink">
-            <Button.Background>
-                <ImageBrush ImageSource="Icons/pencil.png"/>
-            </Button.Background>
-        </Button>
-
-        <Button Click="btnUndo" Content="Undo" HorizontalAlignment="Left" Margin="0,150,0,0" VerticalAlignment="Top" Width="30" Height="30" >
-            <Button.Background>
-                <ImageBrush ImageSource="Icons/undo.png"/>
-            </Button.Background>
-        </Button>
-        <Button Content="Close" Click="btnClose" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" Margin="0,30,0,0">
+    <Grid Width="32" >
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="0*"/>
+        </Grid.RowDefinitions>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="287" Margin="0,30,0,0" VerticalAlignment="Top" Width="32" Stroke="White"/>
+        <Image HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="30" Source="Icons/logo.png" Margin="1,0,0,0"/>
+        <Button Content="Close" Click="btnClose" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="30" Margin="1,30,0,0" BorderBrush="{x:Null}">
             <Button.Background>
                 <ImageBrush ImageSource="Icons/eye.png"/>
             </Button.Background>
         </Button>
-        <Button Content="Begin Drawing" Click="openCanvas" HorizontalAlignment="Left" Margin="0,60,0,0" VerticalAlignment="Top" Width="30" Height="30">
+        <Button Content="Begin Drawing" Click="openCanvas" HorizontalAlignment="Left" Margin="1,60,0,0" VerticalAlignment="Top" Width="30" Height="30" BorderBrush="{x:Null}">
             <Button.Background>
                 <ImageBrush ImageSource="Icons/camera.png"/>
             </Button.Background>
         </Button>
-        <Button Click="clrRed" Background="Red" Foreground="White"  HorizontalAlignment="Left" Margin="0,240,0,0" VerticalAlignment="Top" Width="15" Height="15"/>
-        <Button Click="clrBlue" Background="Blue" Foreground="White" HorizontalAlignment="Left" Margin="15,240,0,0" VerticalAlignment="Top" Width="15" Height="15"/>
-        <Button Click="clrGreen" Background="Green" Foreground="White" HorizontalAlignment="Left" Margin="0,255,0,0" VerticalAlignment="Top" Width="15" Height="15"/>
-        <Button Click="clrBlack" Background="Black" Foreground="White" HorizontalAlignment="Left" Margin="15,255,0,0" VerticalAlignment="Top" Width="15" Height="15"/>
+        <Button Click="Ink" Height="30" VerticalAlignment="Top" Width="30" Margin="1,90,0,0" HorizontalAlignment="Left" Content="Ink" BorderBrush="{x:Null}">
+            <Button.Background>
+                <ImageBrush ImageSource="Icons/pencil.png"/>
+            </Button.Background>
+        </Button>
+        <Button Click="Highlight" Width="30" Height="30" Margin="1,120,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Highlight" BorderBrush="{x:Null}">
+            <Button.Background>
+                <ImageBrush ImageSource="Icons/marker.png"/>
+            </Button.Background>
+        </Button>
+        <Button Click="btnUndo" Content="Undo" HorizontalAlignment="Left" Margin="1,150,0,0" VerticalAlignment="Top" Width="30" Height="30" BorderBrush="{x:Null}" >
+            <Button.Background>
+                <ImageBrush ImageSource="Icons/undo.png"/>
+            </Button.Background>
+        </Button>
+        <Button Click="Select" Width="30" Height="30" Margin="1,180,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Select" BorderBrush="{x:Null}">
+            <Button.Background>
+                <ImageBrush ImageSource="Icons/select-drag.png"/>
+            </Button.Background>
+        </Button>
+        <Button Click="EraseStroke" Height="30" VerticalAlignment="Top" Width="30" Margin="1,210,0,0" HorizontalAlignment="Left" Content="EraseStroke" BorderBrush="{x:Null}">
+            <Button.Background>
+                <ImageBrush ImageSource="Icons/eraser-variant.png"/>
+            </Button.Background>
+        </Button>
 
-        <Menu x:Name="mnuOptions" HorizontalAlignment="Left" Height="30" Margin="0,273,0,0" VerticalAlignment="Top" Width="30">
+        <Button Name="clrRed" Click="ColorChoose" Background="Red" Foreground="White"  HorizontalAlignment="Left" Margin="1,240,0,0" VerticalAlignment="Top" Width="15" Height="15" BorderBrush="{x:Null}" BorderThickness="0"/>
+        <Button Name="clrBlue" Click="ColorChoose" Background="Blue" Foreground="White" HorizontalAlignment="Left" Margin="16,240,0,0" VerticalAlignment="Top" Width="15" Height="15" BorderBrush="{x:Null}" BorderThickness="0"/>
+        <Button Name="clrGreen" Click="ColorChoose" Background="Green" Foreground="White" HorizontalAlignment="Left" Margin="1,255,0,0" VerticalAlignment="Top" Width="15" Height="15" BorderBrush="{x:Null}" BorderThickness="0"/>
+        <Button Name="clrYellow" Click="ColorChoose" Background="Yellow" Foreground="White" HorizontalAlignment="Left" Margin="16,255,0,0" VerticalAlignment="Top" Width="15" Height="15" BorderBrush="{x:Null}" BorderThickness="0"/>
+        <Button Name="clrWhite" Click="ColorChoose" Background="Ivory" Foreground="White" HorizontalAlignment="Left" Margin="1,270,0,0" VerticalAlignment="Top" Width="15" Height="15" BorderBrush="{x:Null}" BorderThickness="0"/>
+        <Button Name="clrBlack" Click="ColorChoose" Background="Black" Foreground="White" HorizontalAlignment="Left" Margin="16,270,0,0" VerticalAlignment="Top" Width="15" Height="15" BorderBrush="{x:Null}" BorderThickness="0"/>
+        
+        <Menu x:Name="mnuOptions" HorizontalAlignment="Left" Height="30" Margin="1,286,0,0" VerticalAlignment="Top" Width="30">
             <Menu.Background>
                 <ImageBrush ImageSource="Icons/monitor-multiple.png"/>
             </Menu.Background>
-            <MenuItem x:Name="mnuMonitors" Header="Monitor" Width="30" Height="30" RenderTransformOrigin="0.508,0.518" Click="MonitorSelected"/>
+            <MenuItem x:Name="mnuMonitors" Header="Monitor" Width="30" Height="30" RenderTransformOrigin="0.508,0.518" Click="MonitorSelected" Margin="1,0,0,0" BorderBrush="{x:Null}"/>
         </Menu>
-        <Image HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="30" Source="Icons/logo.png"/>
     </Grid>
     <Window.Resources>
         <RoutedUICommand x:Key="myCommand1" Text="Undo"/>
