@@ -25,6 +25,7 @@ namespace ScreenDraw
         Window1 window1 = new Window1();
         System.Windows.Forms.Screen[] screens = System.Windows.Forms.Screen.AllScreens;
         System.Windows.Forms.Screen selectedScreen;
+        bool hasScreenshot = false;
 
 
         public MainWindow()
@@ -51,6 +52,7 @@ namespace ScreenDraw
                 DragMove();
         }
 
+        #region Select Screens to Use
         // select screens to use
         private void MonitorSelected(object sender, RoutedEventArgs e) {
             // code to select monitor here
@@ -93,39 +95,50 @@ namespace ScreenDraw
             int itemNum = Convert.ToInt32(itemName) - 1;
             selectedScreen = screens[itemNum];
         }
+        #endregion
 
-        // take screenshot and open canvas
+        #region Take screenshot and open canvas
         private void openCanvas(object sender, RoutedEventArgs e)
         {
-            // setup dimensions for target screen
-            //System.Windows.Forms.Screen targetScreen = screens[cmbScreens.SelectedIndex];
-            window1.WindowState = WindowState.Normal;
-            window1.Left = selectedScreen.Bounds.Left;
-            window1.Top = selectedScreen.Bounds.Top;
-            window1.Width = selectedScreen.Bounds.Width;
-            window1.Height = selectedScreen.Bounds.Height;
-            //window1.Left = targetScreen.WorkingArea.Left;
-            //window1.Top = targetScreen.WorkingArea.Top;
-            //window1.Width = targetScreen.WorkingArea.Width;
-            //window1.Height = targetScreen.WorkingArea.Height;
+            TakeScreenshot();
+        }
+        private void TakeScreenshot() {
+            // only if no screenshot exists
+            if (!hasScreenshot)
+            {
+                // setup dimensions for target screen
+                //System.Windows.Forms.Screen targetScreen = screens[cmbScreens.SelectedIndex];
+                window1.WindowState = WindowState.Normal;
+                window1.Left = selectedScreen.Bounds.Left;
+                window1.Top = selectedScreen.Bounds.Top;
+                window1.Width = selectedScreen.Bounds.Width;
+                window1.Height = selectedScreen.Bounds.Height;
+                //window1.Left = targetScreen.WorkingArea.Left;
+                //window1.Top = targetScreen.WorkingArea.Top;
+                //window1.Width = targetScreen.WorkingArea.Width;
+                //window1.Height = targetScreen.WorkingArea.Height;
 
-            //capture screen and put as background
-            System.IO.Stream myImg = takeScreenshot();
-            BitmapImage myBitMap = new BitmapImage();
-            myBitMap.BeginInit();
-            myBitMap.StreamSource = myImg;
-            myBitMap.EndInit();
+                //capture screen and put as background
+                System.IO.Stream myImg = takeScreenshot();
+                BitmapImage myBitMap = new BitmapImage();
+                myBitMap.BeginInit();
+                myBitMap.StreamSource = myImg;
+                myBitMap.EndInit();
 
 
-            // display to canvas
-            //window1.inkCanvas1.Background = new BitmapImage(new Uri(@"c:\temp\foo.png",));
-            //window1.inkCanvas1.Background = new ImageBrush(new BitmapImage(new Uri(@"c:\temp\snap.png")));
-            window1.inkCanvas1.Background = new ImageBrush(myBitMap);
+                // display to canvas
+                //window1.inkCanvas1.Background = new BitmapImage(new Uri(@"c:\temp\foo.png",));
+                //window1.inkCanvas1.Background = new ImageBrush(new BitmapImage(new Uri(@"c:\temp\snap.png")));
+                window1.inkCanvas1.Background = new ImageBrush(myBitMap);
 
-            //open ink on target scree and maximize
-            window1.SourceInitialized += (snd, arg) => window1.WindowState = WindowState.Maximized;
-            window1.Show();
-            //window1.Loaded += MaximizeWindow;
+                //open ink on target scree and maximize
+                window1.SourceInitialized += (snd, arg) => window1.WindowState = WindowState.Maximized;
+                window1.Show();
+                //window1.Loaded += MaximizeWindow;
+
+                // set screenshot variable
+                hasScreenshot = true;
+            }
         }
         private System.IO.Stream takeScreenshot()
         {
@@ -152,10 +165,16 @@ namespace ScreenDraw
             }
             return myImg;
         }
+        #endregion
 
-        // Setup buttons
+        #region Setup buttons
         private void Ink(object sender, RoutedEventArgs e)
         {
+            // if screenshot doesnt already exist, take it
+            if (!hasScreenshot)
+                TakeScreenshot();
+
+            // setup pen
             window1.inkCanvas1.EditingMode = InkCanvasEditingMode.Ink;
 
             // Set the DefaultDrawingAttributes for a red pen.
@@ -167,6 +186,11 @@ namespace ScreenDraw
         // Set the EditingMode to highlighter input.
         private void Highlight(object sender, RoutedEventArgs e)
         {
+            // if screenshot doesnt already exist, take it
+            if (!hasScreenshot)
+                TakeScreenshot();
+
+            // setup highlighter
             window1.inkCanvas1.EditingMode = InkCanvasEditingMode.Ink;
 
             // Set the DefaultDrawingAttributes for a highlighter pen.
@@ -194,6 +218,10 @@ namespace ScreenDraw
         }
         private void btnClose(object sender, RoutedEventArgs e)
         {
+            // reset screenshot variable
+            hasScreenshot = false;
+
+            // close windows
             window1.Close();
             window1 = null;
             window1 = new Window1();
@@ -203,6 +231,7 @@ namespace ScreenDraw
             //if (System.IO.File.Exists(@"c:\temp\snap.png"))
             //    System.IO.File.Delete(@"c:\temp\snap.png");
         }
+#endregion
 
         // choose colors
         //private void clrRed(object sender, RoutedEventArgs e)
