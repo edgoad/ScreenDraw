@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ScreenDraw"
         mc:Ignorable="d"
         Closing="App_Closing"
-        Title="SD" Height="317" Width="32" Topmost="True" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}"
+        Title="SD" Height="317" Width="32" Topmost="True" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}" 
         >
     <Grid Width="32" >
         <Grid.RowDefinitions>

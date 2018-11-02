@@ -36,11 +36,17 @@ namespace ScreenDraw
         private void HandleEsc(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
+            {
+                //this.Hide();
                 Close();
+                MainWindow.hasScreenshot = false;
+                //MainWindow.StartClose();
+            }
         }
         private void btnClose(object sender, RoutedEventArgs e)
         {
             Close();
+            MainWindow.hasScreenshot = false;
         }
         void App_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {

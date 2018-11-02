@@ -14,19 +14,130 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Windows.Interop;
+using System.Runtime.InteropServices;
 
 namespace ScreenDraw
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    
     public partial class MainWindow : Window
     {
-        Window1 window1 = new Window1();
+        #region hotkey setup
+        // register DLLs for global hotkeys
+        [DllImport("user32.dll")]
+        private static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
+        [DllImport("user32.dll")]
+        private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+
+        private const int HOTKEY_ID = 9000;
+
+        //Modifiers:
+        private const uint MOD_NONE = 0x0000; //(none)
+        private const uint MOD_ALT = 0x0001; //ALT
+        private const uint MOD_CONTROL = 0x0002; //CTRL
+        private const uint MOD_SHIFT = 0x0004; //SHIFT
+        private const uint MOD_WIN = 0x0008; //WINDOWS
+        //CAPS LOCK:
+        private const uint VK_CAPITAL = 0x14;
+        // Function keys
+        //        private const uint VK_F10 = 0x79;
+        private const uint VK_F1 = 0x70;
+        private const uint VK_F2 = 0x71;
+        private const uint VK_F3 = 0x72;
+        private const uint VK_F4 = 0x73;
+        private const uint VK_F5 = 0x74;
+        private const uint VK_F6 = 0x75;
+        private const uint VK_F7 = 0x76;
+        private const uint VK_F8 = 0x77;
+        private const uint VK_F9 = 0x78;
+        private const uint VK_F10 = 0x79;
+        private const uint VK_F11 = 0x7A;
+        private const uint VK_F12 = 0x7B;
+        private const uint VK_Escape = 0x1B;
+        private const uint VK_Z = 0x5A;
+
+        private IntPtr _windowHandle;
+        private HwndSource _source;
+        protected override void OnSourceInitialized(EventArgs e)
+        {
+            base.OnSourceInitialized(e);
+
+            _windowHandle = new WindowInteropHelper(this).Handle;
+            _source = HwndSource.FromHwnd(_windowHandle);
+            _source.AddHook(HwndHook);
+
+            RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_CONTROL, VK_CAPITAL); //CTRL + CAPS_LOCK
+            RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_CONTROL, VK_F1); // CTRL + F1
+            RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_CONTROL, VK_F2); // CTRL + F2
+            RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_CONTROL, VK_F3); // CTRL + F3
+            RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_CONTROL, VK_F4); // CTRL + F4
+            RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_CONTROL, VK_F12); // CTRL + ESC
+            RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_CONTROL, VK_Z); // CTRL + Z
+        }
+
+        private IntPtr HwndHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
+        {
+            const int WM_HOTKEY = 0x0312;
+            switch (msg)
+            {
+                case WM_HOTKEY:
+                    switch (wParam.ToInt32())
+                    {
+                        case HOTKEY_ID:
+                            int vkey = (((int)lParam >> 16) & 0xFFFF);
+                            if (vkey == VK_CAPITAL)
+                            {
+                                //tblock.Text += "CapsLock was pressed" + Environment.NewLine;
+                                StartInk();
+                            }
+                            if (vkey == VK_F1)
+                            {
+                                StartInk();
+                            }
+                            if (vkey == VK_F2)
+                            {
+                                StartHighlight();
+                            }
+                            if (vkey == VK_F3)
+                            {
+                                StartErase();
+                            }
+                            if (vkey == VK_F4)
+                            {
+                                StartSelect();
+                            }
+                            if (vkey == VK_F12)
+                            {
+                                StartClose();
+                            }
+                            if (vkey == VK_Z)
+                            {
+                                StartUndo();
+                            }
+                            handled = true;
+                            break;
+                    }
+                    break;
+            }
+            return IntPtr.Zero;
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            _source.RemoveHook(HwndHook);
+            UnregisterHotKey(_windowHandle, HOTKEY_ID);
+            base.OnClosed(e);
+        }
+        #endregion
+
+        Window1 window1;
         System.Windows.Forms.Screen[] screens = System.Windows.Forms.Screen.AllScreens;
         System.Windows.Forms.Screen selectedScreen;
-        bool hasScreenshot = false;
-
+        public static bool hasScreenshot = false;
+        // todo: add global variable for pen size. hotkey to change it
 
         public MainWindow()
         {
@@ -103,9 +214,11 @@ namespace ScreenDraw
             TakeScreenshot();
         }
         private void TakeScreenshot() {
+
             // only if no screenshot exists
             if (!hasScreenshot)
             {
+                window1 = new Window1();
                 // setup dimensions for target screen
                 //System.Windows.Forms.Screen targetScreen = screens[cmbScreens.SelectedIndex];
                 window1.WindowState = WindowState.Normal;
@@ -134,6 +247,10 @@ namespace ScreenDraw
                 //open ink on target scree and maximize
                 window1.SourceInitialized += (snd, arg) => window1.WindowState = WindowState.Maximized;
                 window1.Show();
+                //this.Topmost = true;
+                //this.Activate();
+                window1.Topmost = true;
+                window1.Topmost = false;
                 //window1.Loaded += MaximizeWindow;
 
                 // set screenshot variable
@@ -168,7 +285,7 @@ namespace ScreenDraw
         #endregion
 
         #region Setup buttons
-        private void Ink(object sender, RoutedEventArgs e)
+        private void StartInk()
         {
             // if screenshot doesnt already exist, take it
             if (!hasScreenshot)
@@ -183,9 +300,8 @@ namespace ScreenDraw
             window1.inkCanvas1.DefaultDrawingAttributes.Height = 2;
             window1.inkCanvas1.DefaultDrawingAttributes.Width = 2;
         }
-        // Set the EditingMode to highlighter input.
-        private void Highlight(object sender, RoutedEventArgs e)
-        {
+        private void StartHighlight()
+        {         
             // if screenshot doesnt already exist, take it
             if (!hasScreenshot)
                 TakeScreenshot();
@@ -198,26 +314,16 @@ namespace ScreenDraw
             window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = true;
             window1.inkCanvas1.DefaultDrawingAttributes.Height = 25;
         }
-        // Set the EditingMode to erase by stroke.
-        private void EraseStroke(object sender, RoutedEventArgs e)
+        private void StartErase()
         {
             window1.inkCanvas1.EditingMode = InkCanvasEditingMode.EraseByStroke;
         }
-        // Set the EditingMode to selection.
-        private void Select(object sender, RoutedEventArgs e)
+        private void StartSelect()
         {
             window1.inkCanvas1.EditingMode = InkCanvasEditingMode.Select;
         }
-        private void btnUndo(object sender, RoutedEventArgs e)
-        {
-            int numStrokes = window1.inkCanvas1.Strokes.Count();
-            if (numStrokes >= 1)
-            {
-                window1.inkCanvas1.Strokes.RemoveAt(numStrokes - 1);
-            }
-        }
-        private void btnClose(object sender, RoutedEventArgs e)
-        {
+        private void StartClose()
+        {           
             // reset screenshot variable
             hasScreenshot = false;
 
@@ -225,11 +331,54 @@ namespace ScreenDraw
             window1.Close();
             window1 = null;
             window1 = new Window1();
-            //window1.Hide();
-            //window1.inkCanvas1.Background = System.Windows.Media.Brushes.Ivory;
-            //window1.inkCanvas1.Background = null;
-            //if (System.IO.File.Exists(@"c:\temp\snap.png"))
-            //    System.IO.File.Delete(@"c:\temp\snap.png");
+        }
+        private void StartUndo()
+        {
+            int numStrokes = window1.inkCanvas1.Strokes.Count();
+            if (numStrokes >= 1)
+            {
+                window1.inkCanvas1.Strokes.RemoveAt(numStrokes - 1);
+            }
+        }
+
+        private void Ink(object sender, RoutedEventArgs e)
+        {
+            StartInk();
+        }
+        // Set the EditingMode to highlighter input.
+        private void Highlight(object sender, RoutedEventArgs e)
+        {
+            StartHighlight();
+        }
+        // Set the EditingMode to erase by stroke.
+        private void EraseStroke(object sender, RoutedEventArgs e)
+        {
+            StartErase();
+        }
+        // Set the EditingMode to selection.
+        private void Select(object sender, RoutedEventArgs e)
+        {
+            StartSelect();
+        }
+        private void btnUndo(object sender, RoutedEventArgs e)
+        {
+            StartUndo();
+        }
+        private void btnClose(object sender, RoutedEventArgs e)
+        {
+            StartClose();
+            //// reset screenshot variable
+            //hasScreenshot = false;
+
+            //// close windows
+            //window1.Close();
+            //window1 = null;
+            //window1 = new Window1();
+            ////window1.Hide();
+            ////window1.inkCanvas1.Background = System.Windows.Media.Brushes.Ivory;
+            ////window1.inkCanvas1.Background = null;
+            ////if (System.IO.File.Exists(@"c:\temp\snap.png"))
+            ////    System.IO.File.Delete(@"c:\temp\snap.png");
         }
 #endregion
 
