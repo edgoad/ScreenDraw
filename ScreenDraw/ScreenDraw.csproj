@@ -156,5 +156,11 @@
   <ItemGroup>
     <Resource Include="Icons\logo_icon.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\eraser.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eraser.cur" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

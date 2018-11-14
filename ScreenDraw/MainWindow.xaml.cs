@@ -25,6 +25,10 @@ namespace ScreenDraw
     
     public partial class MainWindow : Window
     {
+        #region cursors
+        //private Cursor Eraser = CursorHelper.FromByteArray(Properties.Resources.eraser);
+
+        #endregion
         #region hotkey setup
         // register DLLs for global hotkeys
         [DllImport("user32.dll")]
@@ -299,6 +303,9 @@ namespace ScreenDraw
             window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = false;
             window1.inkCanvas1.DefaultDrawingAttributes.Height = 2;
             window1.inkCanvas1.DefaultDrawingAttributes.Width = 2;
+
+            // set cursor to pen
+            window1.inkCanvas1.Cursor = Cursors.Pen;
         }
         private void StartHighlight()
         {         
@@ -313,14 +320,28 @@ namespace ScreenDraw
             window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Yellow;
             window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = true;
             window1.inkCanvas1.DefaultDrawingAttributes.Height = 25;
+
+            // set cursor to pen
+            window1.inkCanvas1.Cursor = Cursors.Pen;
         }
         private void StartErase()
         {
             window1.inkCanvas1.EditingMode = InkCanvasEditingMode.EraseByStroke;
+
+            // set cursor to pen
+            //Cursor cur = new Cursor(Properties.Resources.eraser.ToString());
+            //Cursor cur = new Cursor(@"C:\Users\egoad\Source\Repos\edgoad\ScreenDraw\ScreenDraw\Resources\eraser.cur");
+            Cursor cur = new Cursor(@"C:\Users\egoad\Source\Repos\edgoad\ScreenDraw\ScreenDraw\Resources\eraser.cur");
+            window1.inkCanvas1.Cursor = cur;
+            //window1.inkCanvas1.Cursor = Eraser;
+            //window1.inkCanvas1.Cursor = 
         }
         private void StartSelect()
         {
             window1.inkCanvas1.EditingMode = InkCanvasEditingMode.Select;
+
+            // set cursor to pen
+            window1.inkCanvas1.Cursor = Cursors.Cross;
         }
         private void StartClose()
         {           
@@ -469,5 +490,18 @@ namespace ScreenDraw
         }
 
 
+    }
+
+    public sealed class CursorHelper
+    {
+        private CursorHelper() { } //Private constructor as we do not need any instances of this class.
+
+        public static Cursor FromByteArray(byte[] array)
+        {
+            using (System.IO.MemoryStream memoryStream = new System.IO.MemoryStream(array))
+            {
+                return new Cursor(memoryStream);
+            }
+        }
     }
 }
