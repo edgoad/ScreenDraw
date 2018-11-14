@@ -9,7 +9,7 @@
         Closing="App_Closing"
         Title="Window1" Height="450" Width="800" WindowStyle="None" Top="2">
     <Grid>
-        <InkCanvas Name="inkCanvas1" Background="Ivory" Grid.ColumnSpan="2" Cursor="Cross">
+        <InkCanvas Name="inkCanvas1" Background="Ivory" Grid.ColumnSpan="2" Cursor="Pen" UseCustomCursor="True">
             <InkCanvas.DefaultDrawingAttributes>
                 <Ink:DrawingAttributes xmlns:ink="system-windows-ink" Color="Red" Width="2" Height="2"/>
             </InkCanvas.DefaultDrawingAttributes>
