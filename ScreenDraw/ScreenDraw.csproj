@@ -157,10 +157,13 @@
     <Resource Include="Icons\logo_icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icons\eraser.cur" />
+    <Resource Include="Resources\eraser.cur" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\eraser.cur" />
+    <Resource Include="Resources\marker.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\pencil.cur" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

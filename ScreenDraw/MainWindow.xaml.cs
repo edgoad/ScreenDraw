@@ -305,7 +305,10 @@ namespace ScreenDraw
             window1.inkCanvas1.DefaultDrawingAttributes.Width = 2;
 
             // set cursor to pen
-            window1.inkCanvas1.Cursor = Cursors.Pen;
+            System.IO.MemoryStream cursorStream = new System.IO.MemoryStream(ScreenDraw.Properties.Resources.pencil);
+            Cursor cur = new Cursor(cursorStream);
+            window1.inkCanvas1.Cursor = cur;
+
         }
         private void StartHighlight()
         {         
@@ -322,19 +325,21 @@ namespace ScreenDraw
             window1.inkCanvas1.DefaultDrawingAttributes.Height = 25;
 
             // set cursor to pen
-            window1.inkCanvas1.Cursor = Cursors.Pen;
+            //window1.inkCanvas1.Cursor = Cursors.Pen;
+            System.IO.MemoryStream cursorStream = new System.IO.MemoryStream(ScreenDraw.Properties.Resources.marker);
+            Cursor cur = new Cursor(cursorStream);
+            window1.inkCanvas1.Cursor = cur;
+
         }
         private void StartErase()
         {
             window1.inkCanvas1.EditingMode = InkCanvasEditingMode.EraseByStroke;
 
-            // set cursor to pen
-            //Cursor cur = new Cursor(Properties.Resources.eraser.ToString());
-            //Cursor cur = new Cursor(@"C:\Users\egoad\Source\Repos\edgoad\ScreenDraw\ScreenDraw\Resources\eraser.cur");
-            Cursor cur = new Cursor(@"C:\Users\egoad\Source\Repos\edgoad\ScreenDraw\ScreenDraw\Resources\eraser.cur");
+            // set cursor to eraser
+            System.IO.MemoryStream cursorStream = new System.IO.MemoryStream(ScreenDraw.Properties.Resources.eraser);
+            Cursor cur = new Cursor(cursorStream);
             window1.inkCanvas1.Cursor = cur;
-            //window1.inkCanvas1.Cursor = Eraser;
-            //window1.inkCanvas1.Cursor = 
+
         }
         private void StartSelect()
         {
