@@ -7,9 +7,9 @@
         xmlns:local="clr-namespace:ScreenDraw"
         mc:Ignorable="d"
         Closing="App_Closing"
-        Title="Window1" Height="450" Width="800" WindowStyle="None" Top="2">
+        Title="Window1" Height="450" Width="800" WindowStyle="None" Top="2" AllowsTransparency="True" >
     <Grid>
-        <InkCanvas Name="inkCanvas1" Background="Ivory" Grid.ColumnSpan="2" Cursor="Pen" UseCustomCursor="True">
+        <InkCanvas Name="inkCanvas1" Background="Ivory" Grid.ColumnSpan="2" Cursor="Pen" UseCustomCursor="True" >
             <InkCanvas.DefaultDrawingAttributes>
                 <Ink:DrawingAttributes xmlns:ink="system-windows-ink" Color="Red" Width="2" Height="2"/>
             </InkCanvas.DefaultDrawingAttributes>
@@ -29,4 +29,13 @@
         <KeyBinding  Key="Z" Modifiers="Ctrl" Command="{StaticResource myCommand1}"/>
         <KeyBinding Key="Esc" Command="{StaticResource myCommand2}"/>
     </Window.InputBindings>
+    <!--<Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Duration="00:00:01" Storyboard.TargetProperty="Opacity" From="0" To="1"  />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>-->
 </Window>
