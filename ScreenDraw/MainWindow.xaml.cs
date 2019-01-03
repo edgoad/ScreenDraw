@@ -249,7 +249,7 @@ namespace ScreenDraw
                 window1.inkCanvas1.Background = new ImageBrush(myBitMap);
 
                 //open ink on target scree and maximize
-                window1.SourceInitialized += (snd, arg) => window1.WindowState = WindowState.Maximized;
+                //window1.SourceInitialized += (snd, arg) => window1.WindowState = WindowState.Maximized;
                 window1.Show();
                 //this.Topmost = true;
                 //this.Activate();
@@ -257,6 +257,7 @@ namespace ScreenDraw
                 window1.Topmost = false;
                 //window1.Loaded += MaximizeWindow;
 
+                
                 // set screenshot variable
                 hasScreenshot = true;
             }

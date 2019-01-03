@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:ScreenDraw"
         mc:Ignorable="d"
         Closing="App_Closing"
-        Title="Window1" Height="450" Width="800" WindowStyle="None" Top="2" AllowsTransparency="True" >
+        Title="Window1" WindowStyle="None" Top="2" AllowsTransparency="True">
     <Grid>
         <InkCanvas Name="inkCanvas1" Background="Ivory" Grid.ColumnSpan="2" Cursor="Pen" UseCustomCursor="True" >
             <InkCanvas.DefaultDrawingAttributes>
