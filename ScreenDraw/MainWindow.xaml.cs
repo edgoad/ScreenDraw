@@ -148,7 +148,8 @@ namespace ScreenDraw
             InitializeComponent();
 
             // setup notify icon
-            this.nIcon.Icon = new Icon(@"../../Icons/logo_icon.ico");   // set notify icon image
+            this.nIcon.Icon = ScreenDraw.Properties.Resources.logo_icon;  // set notify icon image
+            //this.nIcon.Icon = new Icon(@"../../Icons/logo_icon.ico");   // set notify icon image
             this.nIcon.Text = "ScreenDraw";
             this.nIcon.Visible = true;
             // setup righ-click
