@@ -146,6 +146,23 @@ namespace ScreenDraw
         public MainWindow()
         {
             InitializeComponent();
+
+            // setup notify icon
+            this.nIcon.Icon = new Icon(@"../../Icons/logo_icon.ico");   // set notify icon image
+            this.nIcon.Text = "ScreenDraw";
+            this.nIcon.Visible = true;
+            // setup righ-click
+            this.nIcon.ContextMenuStrip = this.nStrip;
+            this.nStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.nItem });
+            this.nItem.Text = "Close";
+            this.nItem.Click += ExitApp;
+            //this.nIcon.ShowBalloonTip(5000, "Hi", "This is a baloon tooltip", System.Windows.Forms.ToolTipIcon.Info);
+            // hide&unhide window
+            //this.nIcon.Click += new System.EventHandler(this.nIcon_Click);
+            this.nIcon.Click += this.nIcon_Click;
+
+
+
             foreach (var screen in screens)
             {
                 MenuItem myMenuItem = new MenuItem();
@@ -154,12 +171,14 @@ namespace ScreenDraw
                 if (screen.DeviceName == Properties.Settings.Default.monitorName)
                     myMenuItem.IsChecked = true;
 
-                 mnuMonitors.Items.Add(myMenuItem);
-           }
+                mnuMonitors.Items.Add(myMenuItem);
+            }
             MouseDown += Window_MouseDown;
 
             SelectScreen();
         }
+
+
         // Allow borderless movement
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -349,6 +368,18 @@ namespace ScreenDraw
             // set cursor to pen
             window1.inkCanvas1.Cursor = Cursors.Cross;
         }
+        private void ExitApp(Object sender, EventArgs e)
+        {
+            try
+            {
+                StartClose();
+            }
+            catch { }
+            this.nIcon.Visible = false;
+            //this.Exit();
+            //Close();
+            System.Windows.Application.Current.Shutdown();
+        }
         private void StartClose()
         {           
             // reset screenshot variable
@@ -492,10 +523,30 @@ namespace ScreenDraw
         // close out all windows when exiting
         void App_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            this.nIcon.Visible = false;
             System.Windows.Application.Current.Shutdown();
         }
 
-
+        #region notification icon
+        System.Windows.Forms.NotifyIcon nIcon = new System.Windows.Forms.NotifyIcon();  // notify icon test
+        System.Windows.Forms.ContextMenuStrip nStrip = new System.Windows.Forms.ContextMenuStrip();
+        System.Windows.Forms.ToolStripMenuItem nItem = new System.Windows.Forms.ToolStripMenuItem();
+        private void nIcon_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.MouseEventArgs me = (System.Windows.Forms.MouseEventArgs)e;
+//            MouseEventArgs me = (MouseEventArgs)e;
+            //if (e.Equals(MouseButton.Left))
+            if(me.Button== System.Windows.Forms.MouseButtons.Left)
+            {
+                //Show();
+                //WindowState = FormWindowState.Normal;
+                if (this.Visibility == Visibility.Collapsed)
+                    this.Visibility = Visibility.Visible;
+                else
+                    this.Visibility = Visibility.Collapsed;
+            }
+        }
+        #endregion
     }
 
     public sealed class CursorHelper
