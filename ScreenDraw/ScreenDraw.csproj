@@ -180,7 +180,7 @@
     <Resource Include="Resources\pencil.cur" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\logo_icon.ico" />
+    <None Include="Resources\logo_icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
