@@ -62,6 +62,16 @@ namespace ScreenDraw
         private const uint VK_F12 = 0x7B;
         private const uint VK_Escape = 0x1B;
         private const uint VK_Z = 0x5A;
+        private const uint VK_0 = 0x30;
+        private const uint VK_1 = 0x31;
+        private const uint VK_2 = 0x32;
+        private const uint VK_3 = 0x33;
+        private const uint VK_4 = 0x34;
+        private const uint VK_5 = 0x35;
+        private const uint VK_6 = 0x36;
+        private const uint VK_7 = 0x37;
+        private const uint VK_8 = 0x38;
+        private const uint VK_9 = 0x39;
 
         private IntPtr _windowHandle;
         private HwndSource _source;
@@ -80,6 +90,13 @@ namespace ScreenDraw
             RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_CONTROL, VK_F4); // CTRL + F4
             RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_CONTROL, VK_F12); // CTRL + ESC
             RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_CONTROL, VK_Z); // CTRL + Z
+
+            // colors - ALT/SHIFT 6-0
+            RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_ALT + MOD_SHIFT, VK_6); // ALT + Shift + 6
+            RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_ALT + MOD_SHIFT, VK_7); // ALT + Shift + 7
+            RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_ALT + MOD_SHIFT, VK_8); // ALT + Shift + 8
+            RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_ALT + MOD_SHIFT, VK_9); // ALT + Shift + 9
+            RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_ALT + MOD_SHIFT, VK_0); // ALT + Shift + 0
         }
 
         private IntPtr HwndHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
@@ -97,29 +114,53 @@ namespace ScreenDraw
                                 //tblock.Text += "CapsLock was pressed" + Environment.NewLine;
                                 StartInk();
                             }
-                            if (vkey == VK_F1)
+                            else if (vkey == VK_F1)
                             {
                                 StartInk();
                             }
-                            if (vkey == VK_F2)
+                            else if (vkey == VK_F2)
                             {
                                 StartHighlight();
                             }
-                            if (vkey == VK_F3)
+                            else if (vkey == VK_F3)
                             {
                                 StartErase();
                             }
-                            if (vkey == VK_F4)
+                            else if (vkey == VK_F4)
                             {
                                 StartSelect();
                             }
-                            if (vkey == VK_F12)
+                            else if (vkey == VK_F12)
                             {
                                 StartClose();
                             }
-                            if (vkey == VK_Z)
+                            else if (vkey == VK_Z)
                             {
                                 StartUndo();
+                            }
+                            else if (vkey == VK_6)
+                            {
+                                TakeScreenshot();
+                                window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Blue;
+                            }
+                            else if (vkey == VK_7)
+                            {
+                                TakeScreenshot();
+                                window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Yellow;
+                            }
+                            else if (vkey == VK_8)
+                            {
+                                TakeScreenshot();
+                                window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Black;
+                            }
+                            else if (vkey == VK_9)
+                            {
+                                TakeScreenshot();
+                                window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Red;
+                            }
+                            else if (vkey == VK_0)
+                            {
+                                StartClose();
                             }
                             handled = true;
                             break;

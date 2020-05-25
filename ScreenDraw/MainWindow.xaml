@@ -51,12 +51,12 @@
             </Button.Background>
         </Button>
 
-        <Button Name="clrRed" Click="ColorChoose" Background="Red" Foreground="White"  HorizontalAlignment="Left" Margin="1,210,0,0" VerticalAlignment="Top" Width="15" Height="15" BorderBrush="{x:Null}" BorderThickness="0"/>
-        <Button Name="clrBlue" Click="ColorChoose" Background="Blue" Foreground="White" HorizontalAlignment="Left" Margin="16,210,0,0" VerticalAlignment="Top" Width="15" Height="15" BorderBrush="{x:Null}" BorderThickness="0"/>
-        <Button Name="clrGreen" Click="ColorChoose" Background="Green" Foreground="White" HorizontalAlignment="Left" Margin="1,225,0,0" VerticalAlignment="Top" Width="15" Height="15" BorderBrush="{x:Null}" BorderThickness="0"/>
-        <Button Name="clrYellow" Click="ColorChoose" Background="Yellow" Foreground="White" HorizontalAlignment="Left" Margin="16,225,0,0" VerticalAlignment="Top" Width="15" Height="15" BorderBrush="{x:Null}" BorderThickness="0"/>
+        <Button Name="clrRed" Click="ColorChoose" Background="Red" Foreground="White"  HorizontalAlignment="Left" Margin="1,210,0,0" VerticalAlignment="Top" Width="15" Height="15" BorderBrush="{x:Null}" BorderThickness="0" ToolTip="ALT + Shift + 9"/>
+        <Button Name="clrBlue" Click="ColorChoose" Background="Blue" Foreground="White" HorizontalAlignment="Left" Margin="16,210,0,0" VerticalAlignment="Top" Width="15" Height="15" BorderBrush="{x:Null}" BorderThickness="0" ToolTip="ALT + Shift + 6"/>
+        <Button Name="clrGreen" Click="ColorChoose" Background="Green" Foreground="White" HorizontalAlignment="Left" Margin="1,225,0,0" VerticalAlignment="Top" Width="15" Height="15" BorderBrush="{x:Null}" BorderThickness="0" />
+        <Button Name="clrYellow" Click="ColorChoose" Background="Yellow" Foreground="White" HorizontalAlignment="Left" Margin="16,225,0,0" VerticalAlignment="Top" Width="15" Height="15" BorderBrush="{x:Null}" BorderThickness="0" ToolTip="ALT + Shift + 7"/>
         <Button Name="clrWhite" Click="ColorChoose" Background="Ivory" Foreground="White" HorizontalAlignment="Left" Margin="1,240,0,0" VerticalAlignment="Top" Width="15" Height="15" BorderBrush="{x:Null}" BorderThickness="0"/>
-        <Button Name="clrBlack" Click="ColorChoose" Background="Black" Foreground="White" HorizontalAlignment="Left" Margin="16,240,0,0" VerticalAlignment="Top" Width="15" Height="15" BorderBrush="{x:Null}" BorderThickness="0"/>
+        <Button Name="clrBlack" Click="ColorChoose" Background="Black" Foreground="White" HorizontalAlignment="Left" Margin="16,240,0,0" VerticalAlignment="Top" Width="15" Height="15" BorderBrush="{x:Null}" BorderThickness="0" ToolTip="ALT + Shift + 8"/>
         
         <Menu x:Name="mnuOptions" HorizontalAlignment="Left" Height="30" Margin="1,256,0,0" VerticalAlignment="Top" Width="30">
             <Menu.Background>
