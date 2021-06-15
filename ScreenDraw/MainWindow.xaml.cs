@@ -190,7 +190,6 @@ namespace ScreenDraw
 
             // setup notify icon
             this.nIcon.Icon = ScreenDraw.Properties.Resources.logo_icon;  // set notify icon image
-            //this.nIcon.Icon = new Icon(@"../../Icons/logo_icon.ico");   // set notify icon image
             this.nIcon.Text = "ScreenDraw";
             this.nIcon.Visible = true;
             // setup righ-click
@@ -198,9 +197,6 @@ namespace ScreenDraw
             this.nStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.nItem });
             this.nItem.Text = "Close";
             this.nItem.Click += ExitApp;
-            //this.nIcon.ShowBalloonTip(5000, "Hi", "This is a baloon tooltip", System.Windows.Forms.ToolTipIcon.Info);
-            // hide&unhide window
-            //this.nIcon.Click += new System.EventHandler(this.nIcon_Click);
             this.nIcon.Click += this.nIcon_Click;
 
 
@@ -232,10 +228,6 @@ namespace ScreenDraw
         // select screens to use
         private void MonitorSelected(object sender, RoutedEventArgs e) {
             // code to select monitor here
-            //MenuItem menuItem = (MenuItem)e.OriginalSource;
-            //menuItem.IsChecked = true;
-
-            //Properties.Settings.Default.monitorName = (MenuItem)e.OriginalSource.
 
             foreach (MenuItem menuItem in mnuMonitors.Items)
             {
@@ -245,9 +237,6 @@ namespace ScreenDraw
                     string itemName = menuItem.Header.ToString();
                     Properties.Settings.Default.monitorName = itemName;
                     Properties.Settings.Default.Save();
-                    //itemName = itemName.Replace("\\\\.\\DISPLAY", "");
-                    //int itemNum = Convert.ToInt32(itemName) - 1;
-                    //selectedScreen = screens[itemNum];
                     SelectScreen();
                 }
                 else
@@ -267,7 +256,6 @@ namespace ScreenDraw
         {
             string itemName = Properties.Settings.Default.monitorName;
             itemName = System.Text.RegularExpressions.Regex.Match(itemName, @"\d+").Value;
-//            itemName = itemName.Replace("\\\\.\\DISPLAY", "");    // replaced with regex above
             int itemNum = Convert.ToInt32(itemName) - 1;
             selectedScreen = screens[itemNum];
         }
@@ -285,16 +273,11 @@ namespace ScreenDraw
             {
                 window1 = new Window1();
                 // setup dimensions for target screen
-                //System.Windows.Forms.Screen targetScreen = screens[cmbScreens.SelectedIndex];
                 window1.WindowState = WindowState.Normal;
                 window1.Left = selectedScreen.Bounds.Left;
                 window1.Top = selectedScreen.Bounds.Top;
                 window1.Width = selectedScreen.Bounds.Width;
                 window1.Height = selectedScreen.Bounds.Height;
-                //window1.Left = targetScreen.WorkingArea.Left;
-                //window1.Top = targetScreen.WorkingArea.Top;
-                //window1.Width = targetScreen.WorkingArea.Width;
-                //window1.Height = targetScreen.WorkingArea.Height;
 
                 //capture screen and put as background
                 System.IO.Stream myImg = takeScreenshot();
@@ -305,18 +288,12 @@ namespace ScreenDraw
 
 
                 // display to canvas
-                //window1.inkCanvas1.Background = new BitmapImage(new Uri(@"c:\temp\foo.png",));
-                //window1.inkCanvas1.Background = new ImageBrush(new BitmapImage(new Uri(@"c:\temp\snap.png")));
                 window1.inkCanvas1.Background = new ImageBrush(myBitMap);
 
                 //open ink on target scree and maximize
-                //window1.SourceInitialized += (snd, arg) => window1.WindowState = WindowState.Maximized;
                 window1.Show();
-                //this.Topmost = true;
-                //this.Activate();
                 window1.Topmost = true;
                 window1.Topmost = false;
-                //window1.Loaded += MaximizeWindow;
 
                 
                 // set screenshot variable
@@ -327,15 +304,10 @@ namespace ScreenDraw
         {
             System.IO.MemoryStream myImg = new System.IO.MemoryStream();
 
-            //System.Windows.Forms.Screen targetScreen = screens[cmbScreens.SelectedIndex];
             int screenLeft = selectedScreen.Bounds.Left;
             int screenTop = selectedScreen.Bounds.Top;
             int screenWidth = selectedScreen.Bounds.Width;
             int screenHeight = selectedScreen.Bounds.Height;
-            //int screenLeft = targetScreen.WorkingArea.Left;
-            //int screenTop = targetScreen.WorkingArea.Top;
-            //int screenWidth = targetScreen.WorkingArea.Width;
-            //int screenHeight = targetScreen.WorkingArea.Height;
 
             using (Bitmap bmp = new Bitmap(screenWidth, screenHeight))
             {
@@ -343,7 +315,6 @@ namespace ScreenDraw
                 {
                     g.CopyFromScreen(screenLeft, screenTop, 0, 0, bmp.Size);
                 }
-                //bmp.Save(@"c:\temp\snap.png", ImageFormat.Png);
                 bmp.Save(myImg, ImageFormat.Png);
             }
             return myImg;
@@ -387,7 +358,6 @@ namespace ScreenDraw
             window1.inkCanvas1.DefaultDrawingAttributes.Height = 25;
 
             // set cursor to pen
-            //window1.inkCanvas1.Cursor = Cursors.Pen;
             System.IO.MemoryStream cursorStream = new System.IO.MemoryStream(ScreenDraw.Properties.Resources.marker);
             Cursor cur = new Cursor(cursorStream);
             window1.inkCanvas1.Cursor = cur;
@@ -418,8 +388,6 @@ namespace ScreenDraw
             }
             catch { }
             this.nIcon.Visible = false;
-            //this.Exit();
-            //Close();
             System.Windows.Application.Current.Shutdown();
         }
         private void StartClose()
@@ -467,82 +435,9 @@ namespace ScreenDraw
         private void btnClose(object sender, RoutedEventArgs e)
         {
             StartClose();
-            //// reset screenshot variable
-            //hasScreenshot = false;
-
-            //// close windows
-            //window1.Close();
-            //window1 = null;
-            //window1 = new Window1();
-            ////window1.Hide();
-            ////window1.inkCanvas1.Background = System.Windows.Media.Brushes.Ivory;
-            ////window1.inkCanvas1.Background = null;
-            ////if (System.IO.File.Exists(@"c:\temp\snap.png"))
-            ////    System.IO.File.Delete(@"c:\temp\snap.png");
         }
 #endregion
 
-        // choose colors
-        //private void clrRed(object sender, RoutedEventArgs e)
-        //{
-        //    window1.inkCanvas1.EditingMode = InkCanvasEditingMode.Ink;
-
-        //    // Set the DefaultDrawingAttributes for a red pen.
-        //    window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Red;
-        //    //window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = false;
-        //    //window1.inkCanvas1.DefaultDrawingAttributes.Height = 2;
-        //    //window1.inkCanvas1.DefaultDrawingAttributes.Width = 2;
-        //}
-        //private void clrBlue(object sender, RoutedEventArgs e)
-        //{
-        //    window1.inkCanvas1.EditingMode = InkCanvasEditingMode.Ink;
-
-        //    // Set the DefaultDrawingAttributes for a red pen.
-        //    window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Blue;
-        //    //window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = false;
-        //    //window1.inkCanvas1.DefaultDrawingAttributes.Height = 2;
-        //    //window1.inkCanvas1.DefaultDrawingAttributes.Width = 2;
-        //}
-        //private void clrGreen(object sender, RoutedEventArgs e)
-        //{
-        //    window1.inkCanvas1.EditingMode = InkCanvasEditingMode.Ink;
-
-        //    // Set the DefaultDrawingAttributes for a red pen.
-        //    window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Green;
-        //    //window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = false;
-        //    //window1.inkCanvas1.DefaultDrawingAttributes.Height = 2;
-        //    //window1.inkCanvas1.DefaultDrawingAttributes.Width = 2;
-        //}
-        //private void clrYellow(object sender, RoutedEventArgs e)
-        //{
-        //    window1.inkCanvas1.EditingMode = InkCanvasEditingMode.Ink;
-
-        //    // Set the DefaultDrawingAttributes for a red pen.
-        //    window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Yellow;
-        //    //window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = false;
-        //    //window1.inkCanvas1.DefaultDrawingAttributes.Height = 2;
-        //    //window1.inkCanvas1.DefaultDrawingAttributes.Width = 2;
-        //}
-        //private void clrBlack(object sender, RoutedEventArgs e)
-        //{
-        //    window1.inkCanvas1.EditingMode = InkCanvasEditingMode.Ink;
-
-        //    // Set the DefaultDrawingAttributes for a red pen.
-        //    window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.Black;
-        //    //window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = false;
-        //    //window1.inkCanvas1.DefaultDrawingAttributes.Height = 2;
-        //    //window1.inkCanvas1.DefaultDrawingAttributes.Width = 2;
-        //}
-        //private void clrWhite(object sender, RoutedEventArgs e)
-        //{
-        //    window1.inkCanvas1.EditingMode = InkCanvasEditingMode.Ink;
-
-        //    // Set the DefaultDrawingAttributes for a red pen.
-        //    window1.inkCanvas1.DefaultDrawingAttributes.Color = Colors.White;
-        //    //window1.inkCanvas1.DefaultDrawingAttributes.IsHighlighter = false;
-        //    //window1.inkCanvas1.DefaultDrawingAttributes.Height = 2;
-        //    //window1.inkCanvas1.DefaultDrawingAttributes.Width = 2;
-        //}
 
         private void ColorChoose(object sender, RoutedEventArgs e)
         {
@@ -576,12 +471,8 @@ namespace ScreenDraw
         private void nIcon_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.MouseEventArgs me = (System.Windows.Forms.MouseEventArgs)e;
-//            MouseEventArgs me = (MouseEventArgs)e;
-            //if (e.Equals(MouseButton.Left))
             if(me.Button== System.Windows.Forms.MouseButtons.Left)
             {
-                //Show();
-                //WindowState = FormWindowState.Normal;
                 if (this.Visibility == Visibility.Collapsed)
                     this.Visibility = Visibility.Visible;
                 else
