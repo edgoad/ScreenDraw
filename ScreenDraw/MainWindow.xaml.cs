@@ -89,7 +89,7 @@ namespace ScreenDraw
             RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_CONTROL, VK_F3); // CTRL + F3
             RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_CONTROL, VK_F4); // CTRL + F4
             RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_CONTROL, VK_F12); // CTRL + ESC
-            RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_CONTROL, VK_Z); // CTRL + Z
+            //RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_CONTROL, VK_Z); // CTRL + Z
 
             // colors - ALT/SHIFT 6-0
             RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_ALT + MOD_SHIFT, VK_6); // ALT + Shift + 6
@@ -134,10 +134,10 @@ namespace ScreenDraw
                             {
                                 StartClose();
                             }
-                            else if (vkey == VK_Z)
-                            {
-                                StartUndo();
-                            }
+                            //else if (vkey == VK_Z)
+                            //{
+                            //    StartUndo();
+                            //}
                             else if (vkey == VK_6)
                             {
                                 TakeScreenshot();

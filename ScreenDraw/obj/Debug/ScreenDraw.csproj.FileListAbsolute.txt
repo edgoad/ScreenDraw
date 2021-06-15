@@ -35,7 +35,6 @@ C:\Users\egoad\Source\Repos\edgoad\ScreenDraw\ScreenDraw\obj\Debug\ScreenDraw.cs
 C:\Users\edgoa\Source\Repos\ScreenDraw\ScreenDraw\bin\Debug\ScreenDraw.exe.config
 C:\Users\edgoa\Source\Repos\ScreenDraw\ScreenDraw\bin\Debug\ScreenDraw.exe
 C:\Users\edgoa\Source\Repos\ScreenDraw\ScreenDraw\bin\Debug\ScreenDraw.pdb
-C:\Users\edgoa\Source\Repos\ScreenDraw\ScreenDraw\obj\Debug\ScreenDraw.csprojAssemblyReference.cache
 C:\Users\edgoa\Source\Repos\ScreenDraw\ScreenDraw\obj\Debug\MainWindow.g.cs
 C:\Users\edgoa\Source\Repos\ScreenDraw\ScreenDraw\obj\Debug\Window1.g.cs
 C:\Users\edgoa\Source\Repos\ScreenDraw\ScreenDraw\obj\Debug\App.g.cs
@@ -49,3 +48,4 @@ C:\Users\edgoa\Source\Repos\ScreenDraw\ScreenDraw\obj\Debug\ScreenDraw.csproj.Ge
 C:\Users\edgoa\Source\Repos\ScreenDraw\ScreenDraw\obj\Debug\ScreenDraw.csproj.CoreCompileInputs.cache
 C:\Users\edgoa\Source\Repos\ScreenDraw\ScreenDraw\obj\Debug\ScreenDraw.exe
 C:\Users\edgoa\Source\Repos\ScreenDraw\ScreenDraw\obj\Debug\ScreenDraw.pdb
+C:\Users\edgoa\Source\Repos\ScreenDraw\ScreenDraw\obj\Debug\ScreenDraw.csproj.AssemblyReference.cache
